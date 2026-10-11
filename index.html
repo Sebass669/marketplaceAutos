@@ -1,0 +1,408 @@
+<!doctype html>
+<html lang="es-CR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MONTEVER | Carros usados de dueño a dueño en Costa Rica</title>
+  <meta name="description" content="Carros de segunda mano vendidos por sus propios dueños en Costa Rica. Sin agencias ni lotes: revisamos cada anuncio y te conectamos por WhatsApp.">
+  <meta name="theme-color" content="#6fbde9">
+  <meta property="og:title" content="MONTEVER | Carros de dueño a dueño">
+  <meta property="og:description" content="Carros usados de personas particulares en Costa Rica.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="assets/og.jpg">
+  <link rel="icon" href="assets/brand/favicon.svg" type="image/svg+xml">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=JetBrains+Mono:wght@400;500;700&family=Nanum+Pen+Script&display=swap">
+
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/sections.css">
+
+  <link rel="preload" as="image" href="assets/pixel/escena.png">
+  <link rel="preload" as="image" href="assets/pixel/carro.png">
+
+  <!-- Animación: GSAP + ScrollTrigger. Si no cargan, el sitio funciona igual sin animaciones. -->
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script type="module" src="js/main.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#carros">Saltar al catálogo</a>
+  <div data-top-sentinel aria-hidden="true"></div>
+
+  <header class="header" data-header>
+    <div class="container header__inner">
+      <a class="logo" href="#inicio" aria-label="MONTEVER, inicio">
+        <img src="assets/brand/favicon.svg" alt="" width="30" height="30">
+        <span>MONTEVER</span>
+      </a>
+      <nav class="nav" id="nav" aria-label="Principal">
+        <a href="#carros">Carros</a>
+        <a href="#como-funciona">Cómo funciona</a>
+        <a href="#preguntas">Preguntas</a>
+        <a class="btn btn--yellow btn--sm" href="#vender">Vender mi carro</a>
+      </nav>
+      <button class="nav-toggle" type="button" data-nav-toggle aria-controls="nav" aria-expanded="false" aria-label="Abrir menú">
+        <svg class="icono" aria-hidden="true"><use href="assets/icons.svg#i-list"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <main id="inicio">
+    <!-- HERO: póster de cielo con pixel art -->
+    <section class="hero" aria-labelledby="hero-titulo">
+      <div class="cielo" data-pausable>
+        <div class="container cielo__texto">
+          <p class="wordmark" aria-hidden="true" data-wordmark>MONTEVER</p>
+          <p class="cielo__lugar">Costa Rica</p>
+        </div>
+
+        <img class="nube nube--1 pixel" src="assets/pixel/nube-1.png" alt="" width="34" height="13">
+        <img class="nube nube--2 pixel" src="assets/pixel/nube-2.png" alt="" width="22" height="9">
+        <img class="nube nube--3 pixel" src="assets/pixel/nube-1.png" alt="" width="34" height="13">
+
+        <div class="paisaje">
+          <img class="paisaje__fondo pixel" src="assets/pixel/escena.png" alt="" width="320" height="112" data-paisaje-fondo>
+          <img class="paisaje__sedan pixel" src="assets/pixel/sedan.png" alt="" width="110" height="40">
+          <div class="paisaje__carro" data-carro>
+            <img class="pixel" src="assets/pixel/carro.png" alt="" width="130" height="52">
+          </div>
+          <a class="nota" href="#carros" data-nota>
+            <span class="nota__texto mano">recién llegado</span>
+            <span class="nota__auto" data-nota-auto>Ver el catálogo</span>
+            <svg class="nota__flecha" viewBox="0 0 80 60" aria-hidden="true"><path d="M70 6 C 50 10, 22 18, 14 48 M14 48 l-6 -12 M14 48 l12 -6" /></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="container suelo">
+        <h1 class="suelo__titulo" id="hero-titulo">
+          <span>Carros</span>
+          <span>de dueño</span>
+          <span>a dueño.</span>
+        </h1>
+
+        <div class="suelo__bloque">
+          <div class="se-vende-caja" aria-hidden="true"><p class="se-vende"><span>Se</span><span>vende</span></p></div>
+          <div class="suelo__accion">
+            <p class="suelo__sub">Personas vendiendo su propio carro en Costa Rica. Revisamos cada anuncio y te conectamos por WhatsApp.</p>
+            <div class="suelo__ctas">
+              <a class="btn btn--yellow btn--lg" href="#carros">Ver carros <svg class="icono" aria-hidden="true"><use href="assets/icons.svg#i-arrow-down"/></svg></a>
+              <a class="btn btn--ghost btn--lg" href="#vender">Vender mi carro</a>
+            </div>
+            <p class="contador"><span class="contador__num" data-contador>00</span><span class="contador__txt">carros esperando<br>dueño nuevo</span></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CATÁLOGO -->
+    <section class="catalogo" id="carros" aria-labelledby="catalogo-titulo">
+      <div class="regla regla--izq" aria-hidden="true"><span>25</span><span>50</span><span>75</span><span>100</span></div>
+      <div class="regla regla--der" aria-hidden="true"><span>25</span><span>50</span><span>75</span><span>100</span></div>
+
+      <div class="container">
+        <div class="catalogo__cabecera">
+          <h2 class="titulo-poster" id="catalogo-titulo">En venta <span class="marcador">ahora</span></h2>
+          <p class="catalogo__conteo mono" data-conteo aria-live="polite"></p>
+        </div>
+
+        <form class="filtros" data-filtros role="search" aria-label="Filtrar carros">
+          <div class="filtros__chips" data-chips-tipo role="group" aria-label="Tipo de carro"></div>
+          <div class="filtros__campos">
+            <label class="campo campo--buscar">
+              <span class="sr-only">Buscar</span>
+              <svg class="icono" aria-hidden="true"><use href="assets/icons.svg#i-magnifying-glass"/></svg>
+              <input type="search" name="q" placeholder="Buscar marca, modelo o lugar" autocomplete="off">
+            </label>
+            <label class="campo">
+              <span class="sr-only">Marca</span>
+              <select name="marca"></select>
+            </label>
+            <label class="campo">
+              <span class="sr-only">Provincia</span>
+              <select name="provincia"></select>
+            </label>
+            <label class="campo">
+              <span class="sr-only">Precio máximo</span>
+              <select name="precioMax"></select>
+            </label>
+            <label class="campo">
+              <span class="sr-only">Ordenar por</span>
+              <select name="orden"></select>
+            </label>
+            <button class="filtros__limpiar" type="reset">Limpiar</button>
+          </div>
+        </form>
+
+        <div class="grid-autos" data-grid aria-live="polite"></div>
+      </div>
+    </section>
+
+    <!-- CÓMO FUNCIONA: lámina de plano técnico -->
+    <section class="plano" id="como-funciona" aria-labelledby="plano-titulo">
+      <div class="container">
+        <div class="plano__marco">
+          <header class="plano__cabecera">
+            <h2 class="plano__titulo" id="plano-titulo">
+              <span aria-hidden="true">|| MODELO -- MV-01 ||</span>
+              <span class="sr-only">Cómo funciona</span>
+            </h2>
+            <p class="plano__sub mono">Dueño / Ficha / Comprador / Trato</p>
+          </header>
+
+          <div class="plano__cuerpo">
+            <div class="plano__datos mono">
+              <p><span>Lotes</span><i aria-hidden="true"></i><span>0%</span></p>
+              <p><span>Agencias</span><i aria-hidden="true"></i><span>0%</span></p>
+              <p><span>Dueños</span><i aria-hidden="true"></i><span>100%</span></p>
+              <p><span>Contacto</span><i aria-hidden="true"></i><span>WhatsApp</span></p>
+            </div>
+
+            <svg class="plano__carro" viewBox="0 0 620 300" aria-hidden="true" data-plano-carro>
+              <g class="trazo">
+                <path d="M27 171 L27 103 L261 103 L261 45 L279 27 L382 27 L414 45 L450 99 L544 108 L558 126 L558 171 L494 171 A46 46 0 0 0 406 171 L179 171 A46 46 0 0 0 91 171 Z" />
+                <path d="M279 49 L338 49 L338 94 L274 94 Z" />
+                <path d="M351 49 L400 49 L436 94 L351 94 Z" />
+                <path d="M261 103 L261 166 M346 99 L346 166 M27 150 L558 150" />
+                <path d="M532 122 L556 122 L556 132 L532 132 Z" />
+                <circle cx="135" cy="184" r="36" />
+                <circle cx="135" cy="184" r="18" />
+                <circle cx="450" cy="184" r="36" />
+                <circle cx="450" cy="184" r="18" />
+                <path d="M283 57 L334 57 L334 84 L283 84 Z" />
+              </g>
+              <g class="cotas">
+                <path d="M27 252 L558 252 M27 244 L27 260 M558 244 L558 260" />
+                <path d="M135 284 L450 284 M135 276 L135 292 M450 276 L450 292" />
+                <path d="M596 27 L596 220 M588 27 L604 27 M588 220 L604 220" />
+                <path class="suelo-linea" d="M0 220 L620 220" />
+              </g>
+              <g class="cotas-texto">
+                <text x="292" y="246" text-anchor="middle">DE DUEÑO</text>
+                <text x="292" y="278" text-anchor="middle">A DUEÑO</text>
+                <text x="610" y="124" transform="rotate(90 610 124)" text-anchor="middle">SIN LOTES</text>
+                <text x="308.5" y="74" text-anchor="middle" class="rotulo">SE VENDE</text>
+              </g>
+            </svg>
+
+            <ol class="plano__regla mono" aria-hidden="true">
+              <li>01</li>
+              <li>02</li>
+              <li>03</li>
+            </ol>
+          </div>
+
+          <div class="plano__pie">
+            <p class="plano__celda mono">### Cómo funciona</p>
+            <p class="plano__celda mono"># De dueño a dueño</p>
+            <p class="plano__celda mono">### Sin lotes</p>
+
+            <div class="plano__paso" data-paso>
+              <span class="plano__num mono">01</span>
+              <h3>Nos escribís</h3>
+              <p>Mandás los datos y las fotos de tu carro por el formulario o por WhatsApp.</p>
+            </div>
+            <div class="plano__paso" data-paso>
+              <span class="plano__num mono">02</span>
+              <h3>Lo publicamos</h3>
+              <p>Revisamos la información, armamos la ficha y la subimos al catálogo.</p>
+            </div>
+            <div class="plano__paso" data-paso>
+              <span class="plano__num mono">03</span>
+              <h3>Coordinamos la visita</h3>
+              <p>Los compradores nos escriben a nosotros. Te pasamos solo a los interesados en serio.</p>
+            </div>
+
+            <p class="plano__lema mono">**No compramos carros. Te conectamos con quien sí.**</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- VENDER: póster informativo + portapapeles -->
+    <section class="vender" id="vender" data-pausable aria-labelledby="vender-titulo">
+      <div class="container vender__grid">
+        <div class="vender__copy">
+          <span class="etiqueta">Para vendedores</span>
+          <h2 class="titulo-poster" id="vender-titulo" data-reveal>Vendé tu carro sin pasar por un lote</h2>
+
+          <dl class="poster-info" data-reveal>
+            <div>
+              <dt>Tené a mano</dt>
+              <dd>
+                <ul class="checklist">
+                  <li><svg class="icono" aria-hidden="true"><use href="assets/icons.svg#i-camera"/></svg>Fotos de los cuatro lados, el interior y el tablero</li>
+                  <li><svg class="icono" aria-hidden="true"><use href="assets/icons.svg#i-receipt"/></svg>Marchamo al día</li>
+                  <li><svg class="icono" aria-hidden="true"><use href="assets/icons.svg#i-wrench"/></svg>RTV vigente</li>
+                  <li><svg class="icono" aria-hidden="true"><use href="assets/icons.svg#i-identification-card"/></svg>Título de propiedad a tu nombre</li>
+                </ul>
+              </dd>
+            </div>
+            <div>
+              <dt>Cómo se envía</dt>
+              <dd>Llenás los datos y se abre WhatsApp con el mensaje listo. Ahí mismo nos mandás las fotos.</dd>
+            </div>
+            <div>
+              <dt>Quién te contacta</dt>
+              <dd>Solo nosotros. Tu número nunca se publica en el sitio.</dd>
+            </div>
+          </dl>
+        </div>
+
+        <div class="portapapeles" data-reveal>
+          <span class="portapapeles__clip" aria-hidden="true"></span>
+          <svg class="sello" viewBox="0 0 120 120" aria-hidden="true">
+            <defs><path id="sello-circulo" d="M60 60 m-44 0 a44 44 0 1 1 88 0 a44 44 0 1 1 -88 0" /></defs>
+            <circle cx="60" cy="60" r="58" class="sello__fondo" />
+            <text><textPath href="#sello-circulo">DE DUEÑO A DUEÑO * SIN LOTES * </textPath></text>
+          </svg>
+          <svg class="icono sello__pin" aria-hidden="true"><use href="assets/icons.svg#i-map-pin"/></svg>
+
+          <form class="form-venta" data-form-venta novalidate aria-labelledby="vender-titulo">
+            <p class="form-venta__encabezado mano">Ficha de mi carro</p>
+            <div class="form-venta__grid">
+              <div class="campo-form campo-form--full">
+                <label for="f-nombre">Tu nombre</label>
+                <input id="f-nombre" name="nombre" autocomplete="name" aria-describedby="error-nombre" required>
+                <p class="campo-form__error" id="error-nombre"></p>
+              </div>
+              <div class="campo-form">
+                <label for="f-marca">Marca</label>
+                <input id="f-marca" name="marca" placeholder="Toyota" aria-describedby="error-marca" required>
+                <p class="campo-form__error" id="error-marca"></p>
+              </div>
+              <div class="campo-form">
+                <label for="f-modelo">Modelo</label>
+                <input id="f-modelo" name="modelo" placeholder="Corolla" aria-describedby="error-modelo" required>
+                <p class="campo-form__error" id="error-modelo"></p>
+              </div>
+              <div class="campo-form">
+                <label for="f-anio">Año</label>
+                <input id="f-anio" name="anio" type="number" inputmode="numeric" min="1980" aria-describedby="error-anio" required>
+                <p class="campo-form__error" id="error-anio"></p>
+              </div>
+              <div class="campo-form">
+                <label for="f-km">Kilometraje</label>
+                <input id="f-km" name="kilometraje" type="number" inputmode="numeric" min="0" step="1" aria-describedby="error-kilometraje" required>
+                <p class="campo-form__error" id="error-kilometraje"></p>
+              </div>
+              <div class="campo-form">
+                <label for="f-transmision">Transmisión</label>
+                <select id="f-transmision" name="transmision" aria-describedby="error-transmision" required>
+                  <option value="">Elegir</option>
+                  <option>Automática</option>
+                  <option>Manual</option>
+                </select>
+                <p class="campo-form__error" id="error-transmision"></p>
+              </div>
+              <div class="campo-form">
+                <label for="f-provincia">Provincia</label>
+                <select id="f-provincia" name="provincia" aria-describedby="error-provincia" required>
+                  <option value="">Elegir</option>
+                </select>
+                <p class="campo-form__error" id="error-provincia"></p>
+              </div>
+              <div class="campo-form campo-form--full">
+                <label for="f-precio">Precio que esperás (colones)</label>
+                <input id="f-precio" name="precio" type="number" inputmode="numeric" min="0" step="1000" placeholder="9500000" aria-describedby="ayuda-precio error-precio" required>
+                <p class="campo-form__ayuda" id="ayuda-precio">Solo números, sin puntos ni el símbolo ₡.</p>
+                <p class="campo-form__error" id="error-precio"></p>
+              </div>
+              <div class="campo-form campo-form--full">
+                <label for="f-comentario">Algo más que debamos saber <span class="opcional">(opcional)</span></label>
+                <textarea id="f-comentario" name="comentario" rows="3" placeholder="Único dueño, mantenimientos en agencia, detalles a mencionar..."></textarea>
+              </div>
+            </div>
+            <button class="btn btn--ink btn--lg btn--block" type="submit">
+              <svg class="icono" aria-hidden="true"><use href="assets/icons.svg#i-whatsapp-logo"/></svg>Enviar por WhatsApp
+            </button>
+            <p class="form-venta__exito" data-exito hidden role="status">
+              <svg class="icono" aria-hidden="true"><use href="assets/icons.svg#i-check-circle"/></svg>Listo. Si WhatsApp no se abrió, revisá que tu navegador permita ventanas nuevas.
+            </p>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- PREGUNTAS: lámina de mapa -->
+    <section class="preguntas" id="preguntas" data-pausable aria-labelledby="preguntas-titulo">
+      <div class="container preguntas__grid">
+        <div class="preguntas__lado">
+          <h2 class="titulo-poster" id="preguntas-titulo" data-reveal>¿Dudas?</h2>
+          <div class="lupa" aria-hidden="true">
+            <svg class="icono lupa__pin lupa__pin--1" aria-hidden="true"><use href="assets/icons.svg#i-map-pin"/></svg>
+            <svg class="icono lupa__pin lupa__pin--2" aria-hidden="true"><use href="assets/icons.svg#i-map-pin"/></svg>
+            <svg class="icono lupa__pin lupa__pin--3" aria-hidden="true"><use href="assets/icons.svg#i-map-pin"/></svg>
+            <span class="lupa__lente"><svg class="icono" aria-hidden="true"><use href="assets/icons.svg#i-map-pin"/></svg></span>
+          </div>
+          <p class="preguntas__cta">¿Otra pregunta? <a href="#" data-wa="Hola MONTEVER, tengo una consulta.">Escribinos por WhatsApp</a></p>
+        </div>
+
+        <div class="acordeon" data-reveal>
+          <details>
+            <summary>¿MONTEVER compra carros?</summary>
+            <p>No. Todos los carros son de personas particulares que los venden directamente. Nosotros publicamos el anuncio y conectamos a las dos partes.</p>
+          </details>
+          <details>
+            <summary>¿Por qué no aparece el teléfono del dueño?</summary>
+            <p>Para proteger a quien vende. Todos los mensajes llegan primero a nosotros, filtramos a los interesados y coordinamos la visita.</p>
+          </details>
+          <details>
+            <summary>¿Puedo ver el carro antes de comprarlo?</summary>
+            <p>Sí. Escribinos desde la ficha del carro y coordinamos con el dueño un día y lugar para verlo y probarlo.</p>
+          </details>
+          <details>
+            <summary>¿Qué debo revisar antes de pagar?</summary>
+            <p>Pedí el estudio registral en el Registro Nacional para confirmar dueño, gravámenes y anotaciones. Revisá que marchamo y RTV estén al día y llevalo a tu mecánico de confianza.</p>
+          </details>
+          <details>
+            <summary>¿Publican carros de agencias o lotes?</summary>
+            <p>No. MONTEVER es solo para personas que venden su propio carro.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer" data-pausable>
+    <div class="cinta" aria-hidden="true">
+      <div class="cinta__pista">
+        <span>Se vende</span><span class="mano">de dueño a dueño</span><span>Sin lotes</span><span class="mano">pura vida</span>
+        <span>Se vende</span><span class="mano">de dueño a dueño</span><span>Sin lotes</span><span class="mano">pura vida</span>
+      </div>
+    </div>
+    <div class="container footer__grid">
+      <div class="footer__marca">
+        <img src="assets/brand/favicon.svg" alt="" width="40" height="40">
+        <p><strong>MONTEVER</strong><br>Carros usados de dueño a dueño. Costa Rica.</p>
+      </div>
+      <nav class="footer__nav" aria-label="Pie de página">
+        <a href="#carros">Carros</a>
+        <a href="#como-funciona">Cómo funciona</a>
+        <a href="#vender">Vender mi carro</a>
+        <a href="#preguntas">Preguntas</a>
+      </nav>
+      <div class="footer__meta">
+        <p class="mono" data-actualizado></p>
+        <p>Fotos de ejemplo de <a href="assets/autos/CREDITOS.md">Wikimedia Commons</a>.</p>
+      </div>
+    </div>
+    <p class="footer__firma container">Hecho con calma y café por DODO Estudio · <a href="mailto:contacto@dodo-estudio.com">contacto@dodo-estudio.com</a></p>
+    <img class="footer__carro pixel" src="assets/pixel/carro.png" alt="" width="130" height="52">
+  </footer>
+
+  <dialog class="dialogo" data-dialog aria-labelledby="ficha-titulo">
+    <div class="dialogo__panel">
+      <button class="dialogo__cerrar" type="button" data-cerrar aria-label="Cerrar ficha">
+        <svg class="icono" aria-hidden="true"><use href="assets/icons.svg#i-x"/></svg>
+      </button>
+      <div class="dialogo__cuerpo" data-dialog-body></div>
+    </div>
+  </dialog>
+</body>
+</html>

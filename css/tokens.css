@@ -1,0 +1,77 @@
+/*
+ * Tokens de diseño MONTEVER.
+ * Lenguaje de póster impreso: papel, familia de azules (cielo, mapa, plano técnico,
+ * tinta marina) y un único acento amarillo, como los pines del mapa.
+ * Es un diseño de papel, por eso el sitio es solo en modo claro.
+ * Esquinas rectas, salvo los pines y sellos que son circulares.
+ */
+:root {
+  color-scheme: light;
+
+  /* Papel */
+  --paper: #f3f1ea;
+  --paper-2: #e8e5da;
+  --white: #fdfcf8;
+
+  /* Familia de azules */
+  --ink: #142a5c;          /* tinta principal, títulos y texto */
+  --ink-soft: #4a5b82;     /* texto secundario */
+  --cobalt: #2348d0;       /* plano técnico, títulos grandes */
+  --cobalt-deep: #1a37a8;
+  --sky-top: #6fbde9;      /* cielo del hero */
+  --sky-bottom: #d4eaf7;
+  --sky: #9fd0ef;
+  --mist: #dcebf6;         /* fondos de mapa */
+  --line: #c9cfdc;
+
+  /* Acento */
+  --yellow: #f5c21b;
+  --yellow-deep: #d49a0e;
+  --on-yellow: #142a5c;
+
+  /* Estados */
+  --reservado-bg: #fde9a8;
+  --vendido-bg: #dfe3ec;
+  --error: #b42318;
+
+  /* Tipografía */
+  --font-sans: 'Archivo', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, 'Cascadia Mono', monospace;
+  --font-hand: 'Nanum Pen Script', 'Segoe Print', cursive;
+
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: clamp(1.25rem, 1.1rem + 0.6vw, 1.5rem);
+  --text-2xl: clamp(1.9rem, 1.2rem + 2.6vw, 3.4rem);
+  --text-3xl: clamp(2.6rem, 1.4rem + 4.6vw, 5.6rem);
+
+  /* Espaciado */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4.5rem;
+  --space-9: 7rem;
+
+  --container: 1320px;
+  --gutter: clamp(1rem, 0.5rem + 2.5vw, 2.5rem);
+  --header-h: 68px;
+
+  --shadow-card: 0 1px 0 rgb(20 42 92 / 0.08), 0 22px 40px -24px rgb(20 42 92 / 0.45);
+  --shadow-pop: 6px 6px 0 var(--ink);
+
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --dur: 380ms;
+
+  /* Capas: único lugar donde se definen z-index */
+  --z-raised: 2;
+  --z-header: 20;
+  --z-skip: 30;
+  --z-grain: 40;
+}

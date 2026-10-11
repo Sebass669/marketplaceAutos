@@ -1,0 +1,214 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+/* Sin scroll-behavior: smooth (choca con ScrollTrigger). El scroll suave de anclas va por JS.
+   overflow-x: clip evita que aparezca una barra horizontal (y el bucle de redimensión que causaba). */
+html {
+  overflow-x: clip;
+  scroll-padding-top: calc(var(--header-h) + var(--space-4));
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  min-height: 100dvh;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  line-height: 1.55;
+  font-variation-settings: 'wdth' 100;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
+}
+
+/* Grano de papel impreso: un PNG chico con alfa, en capa fija.
+   Sin mix-blend-mode ni filtros SVG para que el scroll no repinte la pantalla entera. */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-grain);
+  pointer-events: none;
+  background: url('../assets/grano.png') repeat;
+  opacity: 0.7;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+.icono {
+  display: inline-block;
+  flex: none;
+  width: 1em;
+  height: 1em;
+  fill: currentColor;
+  vertical-align: -0.125em;
+}
+
+.pixel {
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+}
+
+input,
+select,
+textarea,
+button {
+  font: inherit;
+  color: inherit;
+}
+
+a {
+  color: inherit;
+}
+
+h1,
+h2,
+h3 {
+  line-height: 1.02;
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+ul[class],
+ol[class] {
+  list-style: none;
+  padding: 0;
+}
+
+:focus-visible {
+  outline: 3px solid var(--yellow);
+  outline-offset: 3px;
+}
+
+::selection {
+  background: var(--yellow);
+  color: var(--on-yellow);
+}
+
+.container {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.mono {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+}
+
+.mano {
+  font-family: var(--font-hand);
+  font-weight: 400;
+  line-height: 1;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: absolute;
+  left: var(--space-4);
+  top: -100px;
+  z-index: var(--z-skip);
+  padding: var(--space-3) var(--space-4);
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.skip-link:focus {
+  top: var(--space-4);
+}
+
+[data-top-sentinel] {
+  position: absolute;
+  top: 0;
+  height: 8px;
+  width: 1px;
+}
+
+/* Título de sección estilo póster: grotesca pesada y condensada */
+.titulo-poster {
+  font-size: var(--text-3xl);
+  font-weight: 900;
+  font-variation-settings: 'wdth' 72;
+  letter-spacing: -0.02em;
+  line-height: 0.92;
+  text-transform: uppercase;
+}
+
+/* Etiqueta de sección como las del póster coreano: bloque de tinta con texto amarillo */
+.etiqueta {
+  display: inline-block;
+  padding: 3px var(--space-2);
+  background: var(--ink);
+  color: var(--yellow);
+  font-weight: 800;
+  font-size: var(--text-sm);
+  font-variation-settings: 'wdth' 90;
+}
+
+/* Subrayado de marcador amarillo */
+.marcador {
+  background: linear-gradient(transparent 58%, var(--yellow) 58%, var(--yellow) 92%, transparent 92%);
+  padding-inline: 0.06em;
+}
+
+/* Revelado al hacer scroll (sin GSAP, para elementos simples) */
+@media (prefers-reduced-motion: no-preference) {
+  [data-reveal] {
+    opacity: 0;
+    transform: translateY(28px);
+    transition:
+      opacity 800ms var(--ease-out),
+      transform 800ms var(--ease-out);
+  }
+
+  [data-reveal].is-visible {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Animaciones infinitas en pausa mientras su sección está fuera de pantalla (ver enhancements.js) */
+[data-pausable]:not(.en-vista) *,
+[data-pausable]:not(.en-vista) {
+  animation-play-state: paused !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

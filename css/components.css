@@ -1,0 +1,784 @@
+/* ---------- Botones ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  min-height: 46px;
+  padding: 0 var(--space-5);
+  border: 2px solid var(--ink);
+  font-weight: 800;
+  font-size: var(--text-base);
+  font-variation-settings: 'wdth' 105;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    transform 260ms var(--ease-spring),
+    box-shadow 260ms var(--ease-out),
+    background-color var(--dur) var(--ease-out),
+    color var(--dur) var(--ease-out);
+}
+
+.btn .icono {
+  font-size: 1.25em;
+}
+
+.btn:hover {
+  transform: translate(-3px, -3px);
+  box-shadow: var(--shadow-pop);
+}
+
+.btn:active {
+  transform: translate(0, 0);
+  box-shadow: 0 0 0 var(--ink);
+}
+
+.btn--yellow {
+  background: var(--yellow);
+  color: var(--on-yellow);
+}
+
+.btn--ink {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.btn--ink:hover {
+  box-shadow: 6px 6px 0 var(--yellow);
+}
+
+.btn--ghost {
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.btn--sm {
+  min-height: 40px;
+  padding: 0 var(--space-4);
+  font-size: var(--text-sm);
+}
+
+.btn--lg {
+  min-height: 56px;
+  padding: 0 var(--space-6);
+  font-size: var(--text-lg);
+}
+
+.btn--block {
+  width: 100%;
+}
+
+/* ---------- Sellos de estado (Reservado / Vendido) ---------- */
+.sello-estado {
+  display: inline-block;
+  padding: 4px 10px;
+  border: 2.5px solid currentColor;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: var(--text-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  transform: rotate(-8deg);
+  background: rgb(253 252 248 / 0.88);
+}
+
+.sello-estado--reservado {
+  color: var(--cobalt);
+}
+
+.sello-estado--vendido {
+  color: var(--ink);
+}
+
+/* ---------- Filtros ---------- */
+.filtros {
+  display: grid;
+  gap: var(--space-4);
+  margin-bottom: var(--space-7);
+}
+
+.filtros__chips {
+  display: flex;
+  gap: var(--space-2);
+  overflow-x: auto;
+  padding: 4px 8px 8px 0;
+  scrollbar-width: none;
+}
+
+.chip {
+  flex: none;
+  min-height: 42px;
+  padding: 0 var(--space-5);
+  border: 2px solid var(--ink);
+  background: var(--white);
+  font-weight: 800;
+  font-variation-settings: 'wdth' 100;
+  cursor: pointer;
+  transition:
+    transform 240ms var(--ease-spring),
+    box-shadow 240ms var(--ease-out),
+    background-color var(--dur) var(--ease-out);
+}
+
+.chip:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 4px 4px 0 var(--ink);
+}
+
+.chip[aria-pressed='true'] {
+  background: var(--yellow);
+  box-shadow: 4px 4px 0 var(--ink);
+  transform: translate(-2px, -2px);
+}
+
+.filtros__campos {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-2);
+}
+
+.campo--buscar,
+.filtros__limpiar {
+  grid-column: 1 / -1;
+}
+
+@media (min-width: 1024px) {
+  .filtros__campos {
+    grid-template-columns: 2fr repeat(4, minmax(0, 1fr)) auto;
+  }
+
+  .campo--buscar,
+  .filtros__limpiar {
+    grid-column: auto;
+  }
+}
+
+.campo {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.campo > .icono {
+  position: absolute;
+  left: var(--space-3);
+  font-size: 1.1rem;
+  pointer-events: none;
+}
+
+.campo input,
+.campo select {
+  width: 100%;
+  min-height: 46px;
+  padding: 0 var(--space-3);
+  background: var(--white);
+  border: 0;
+  border-bottom: 2px solid var(--ink);
+  border-radius: 0;
+  font-weight: 600;
+}
+
+.campo--buscar input {
+  padding-left: calc(var(--space-3) + 1.6rem);
+}
+
+.campo input::placeholder {
+  color: var(--ink-soft);
+  font-weight: 500;
+}
+
+.campo input:focus-visible,
+.campo select:focus-visible {
+  outline-offset: 0;
+}
+
+.filtros__limpiar {
+  justify-self: start;
+  min-height: 46px;
+  padding: 0 var(--space-3);
+  background: none;
+  border: 0;
+  font-family: var(--font-hand);
+  font-size: 1.6rem;
+  line-height: 1;
+  color: var(--cobalt);
+  cursor: pointer;
+  display: none;
+}
+
+.filtros[data-activos] .filtros__limpiar {
+  display: block;
+}
+
+@media (min-width: 1024px) {
+  .filtros__limpiar {
+    display: block;
+    visibility: hidden;
+  }
+
+  .filtros[data-activos] .filtros__limpiar {
+    visibility: visible;
+  }
+}
+
+/* ---------- Tarjeta de auto (póster enmarcado) ---------- */
+.grid-autos {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-7) var(--space-6);
+}
+
+@media (min-width: 640px) {
+  .grid-autos {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .grid-autos {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  /* Ritmo de póster: la columna central baja un poco */
+  .grid-autos > .card:nth-child(3n + 2) {
+    transform: translateY(var(--space-7));
+  }
+
+  .grid-autos {
+    padding-bottom: var(--space-7);
+  }
+}
+
+.card {
+  position: relative;
+}
+
+.card__link {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 12px 12px var(--space-5);
+  background: var(--white);
+  box-shadow: var(--shadow-card);
+  text-decoration: none;
+  transition:
+    transform 500ms var(--ease-spring),
+    box-shadow 500ms var(--ease-out);
+}
+
+.card__link:hover {
+  transform: translateY(-6px) rotate(-0.6deg);
+  box-shadow:
+    0 1px 0 rgb(20 42 92 / 0.08),
+    0 34px 50px -28px rgb(20 42 92 / 0.55);
+}
+
+/* Foto con borde inferior orgánico, como los pósters estacionales */
+.card__media {
+  position: relative;
+  aspect-ratio: 4 / 3.3;
+  overflow: hidden;
+  background: var(--mist);
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpath d='M0 0H100V86C88 94 76 80 60 88S30 97 16 89 4 86 0 90Z'/%3E%3C/svg%3E") center / 100% 100% no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpath d='M0 0H100V86C88 94 76 80 60 88S30 97 16 89 4 86 0 90Z'/%3E%3C/svg%3E") center / 100% 100% no-repeat;
+}
+
+.card__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 900ms var(--ease-out);
+}
+
+.card__link:hover .card__media img {
+  transform: scale(1.06);
+}
+
+.card__media .sello-estado {
+  position: absolute;
+  top: var(--space-4);
+  left: var(--space-4);
+}
+
+.card__body {
+  display: grid;
+  gap: var(--space-1);
+  margin-top: calc(-1 * var(--space-5));
+  padding-inline: var(--space-2);
+  position: relative;
+}
+
+.card__marca {
+  font-family: var(--font-hand);
+  font-size: 1.7rem;
+  line-height: 1;
+  color: var(--cobalt);
+}
+
+.card__title {
+  font-size: clamp(1.7rem, 1.3rem + 1.2vw, 2.2rem);
+  font-weight: 900;
+  font-variation-settings: 'wdth' 70;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+  line-height: 0.92;
+}
+
+.card__datos {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-3);
+  margin-top: var(--space-2);
+  color: var(--ink-soft);
+  font-size: var(--text-sm);
+}
+
+.card__anio {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: var(--text-base);
+  color: var(--ink);
+}
+
+.card__foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  margin-top: auto;
+  padding-top: var(--space-4);
+}
+
+.card__body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.card__price {
+  padding: 2px var(--space-2);
+  background: var(--yellow);
+  font-size: var(--text-lg);
+  font-weight: 900;
+  font-variant-numeric: tabular-nums;
+  font-variation-settings: 'wdth' 92;
+}
+
+.card__place {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: var(--text-sm);
+  font-weight: 600;
+}
+
+.card__place .icono {
+  font-size: 1.2rem;
+  color: var(--cobalt);
+  transition: transform 400ms var(--ease-spring);
+}
+
+.card__link:hover .card__place .icono {
+  transform: translateY(-4px);
+  color: var(--yellow-deep);
+}
+
+/* Etiqueta colgante con el código, como el tag del QR del póster de mapa */
+.card__tag {
+  position: absolute;
+  top: -6px;
+  right: 18px;
+  padding: 18px 8px 8px;
+  background: var(--ink);
+  color: var(--paper);
+  font-size: var(--text-xs);
+  writing-mode: vertical-rl;
+  letter-spacing: 0.1em;
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 50% calc(100% - 8px), 0 100%);
+}
+
+.card__tag::before {
+  content: '';
+  position: absolute;
+  top: 6px;
+  left: 50%;
+  width: 6px;
+  height: 6px;
+  margin-left: -3px;
+  border-radius: 50%;
+  background: var(--paper);
+}
+
+.card[data-estado='vendido'] .card__media img {
+  filter: grayscale(1) contrast(0.9);
+  opacity: 0.7;
+}
+
+.card[data-estado='vendido'] .card__price {
+  background: var(--vendido-bg);
+  text-decoration: line-through;
+}
+
+/* Entrada escalonada al pintar la grilla */
+@media (prefers-reduced-motion: no-preference) {
+  .grid-autos .card:not(.card--skeleton) .card__link {
+    animation: carta 700ms var(--ease-out) both;
+    animation-delay: calc(min(var(--i, 0), 8) * 70ms);
+  }
+}
+
+@keyframes carta {
+  from {
+    opacity: 0;
+    transform: translateY(30px) rotate(1.5deg);
+  }
+}
+
+/* ---------- Esqueletos de carga ---------- */
+.card--skeleton {
+  padding: 12px;
+  background: var(--white);
+}
+
+.skeleton {
+  background: linear-gradient(90deg, var(--mist) 0%, var(--white) 50%, var(--mist) 100%);
+  background-size: 200% 100%;
+  animation: brillo 1.4s linear infinite;
+}
+
+.card--skeleton .card__media {
+  -webkit-mask: none;
+  mask: none;
+}
+
+.card--skeleton .card__body {
+  gap: var(--space-2);
+  margin-top: var(--space-4);
+}
+
+.skeleton--line {
+  height: 0.9rem;
+}
+
+.skeleton--title {
+  height: 2rem;
+  width: 85%;
+}
+
+@keyframes brillo {
+  to {
+    background-position: -200% 0;
+  }
+}
+
+/* ---------- Estados vacío / error ---------- */
+.estado-panel {
+  grid-column: 1 / -1;
+  display: grid;
+  justify-items: start;
+  gap: var(--space-3);
+  max-width: 52ch;
+  padding: var(--space-7) 0;
+  color: var(--ink-soft);
+}
+
+.estado-panel__icon {
+  font-size: 3rem;
+  color: var(--cobalt);
+}
+
+.estado-panel__title {
+  font-size: var(--text-2xl);
+  font-weight: 900;
+  font-variation-settings: 'wdth' 72;
+  text-transform: uppercase;
+  line-height: 0.95;
+  color: var(--ink);
+}
+
+.estado-panel--error .estado-panel__icon {
+  color: var(--error);
+}
+
+/* ---------- Diálogo de detalle ---------- */
+.dialogo {
+  width: min(1180px, 100% - 2 * var(--space-4));
+  max-width: none;
+  max-height: calc(100dvh - 2 * var(--space-4));
+  margin: auto; /* el reset global quita el centrado nativo del <dialog> */
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--ink);
+  overflow: visible;
+}
+
+.dialogo::backdrop {
+  background: rgb(20 42 92 / 0.78);
+}
+
+.dialogo__panel {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  max-height: calc(100dvh - 2 * var(--space-4));
+  padding: 12px;
+  background: var(--white);
+  box-shadow: 10px 10px 0 var(--yellow);
+}
+
+.dialogo__cuerpo {
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.dialogo__cerrar {
+  position: absolute;
+  top: -14px;
+  right: -14px;
+  z-index: var(--z-raised);
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border: 0;
+  border-radius: 50%;
+  background: var(--yellow);
+  color: var(--ink);
+  font-size: 1.3rem;
+  cursor: pointer;
+  transition: transform 300ms var(--ease-spring);
+}
+
+.dialogo__cerrar:hover {
+  transform: rotate(90deg) scale(1.08);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .dialogo[open] .dialogo__panel {
+    animation: subir 550ms var(--ease-spring);
+  }
+
+  .dialogo[open]::backdrop {
+    animation: aparecer 300ms ease;
+  }
+}
+
+@keyframes subir {
+  from {
+    opacity: 0;
+    transform: translateY(40px) rotate(1deg);
+  }
+}
+
+@keyframes aparecer {
+  from {
+    opacity: 0;
+  }
+}
+
+/* Clase puesta por carDialog.js (evita el costo de :has en toda la página) */
+html.dialogo-abierto {
+  overflow: hidden;
+}
+
+/* ---------- Ficha del auto ---------- */
+.ficha {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 900px) {
+  .ficha {
+    grid-template-columns: 1.15fr 1fr;
+  }
+
+  .galeria {
+    position: sticky;
+    top: 0;
+    align-self: start;
+  }
+}
+
+.galeria {
+  background: var(--mist);
+}
+
+.galeria__principal {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+
+.galeria__thumbs {
+  display: flex;
+  gap: var(--space-2);
+  padding: var(--space-2);
+}
+
+.galeria__thumb {
+  width: 88px;
+  aspect-ratio: 4 / 3;
+  padding: 0;
+  border: 3px solid transparent;
+  background: none;
+  cursor: pointer;
+  opacity: 0.6;
+  transition: opacity var(--dur) var(--ease-out);
+}
+
+.galeria__thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.galeria__thumb:hover,
+.galeria__thumb[aria-current='true'] {
+  opacity: 1;
+}
+
+.galeria__thumb[aria-current='true'] {
+  border-color: var(--yellow);
+}
+
+.ficha__info {
+  display: grid;
+  align-content: start;
+  gap: var(--space-4);
+  padding: var(--space-6) var(--gutter) var(--space-7);
+}
+
+.ficha__cabecera {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  color: var(--ink-soft);
+}
+
+.ficha__marca {
+  font-family: var(--font-hand);
+  font-size: 2rem;
+  line-height: 1;
+  color: var(--cobalt);
+  margin-bottom: calc(-1 * var(--space-3));
+}
+
+.ficha__titulo {
+  font-size: var(--text-3xl);
+  font-weight: 900;
+  font-variation-settings: 'wdth' 68;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  line-height: 0.88;
+}
+
+.ficha__version {
+  color: var(--ink-soft);
+  font-size: var(--text-lg);
+}
+
+.ficha__precio {
+  justify-self: start;
+  padding: var(--space-1) var(--space-3);
+  background: var(--yellow);
+  font-size: var(--text-2xl);
+  font-weight: 900;
+  font-variation-settings: 'wdth' 88;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Especificaciones como lámina de plano técnico */
+.specs {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  border: 1.5px solid rgb(238 242 255 / 0.5);
+  outline: 6px solid var(--cobalt);
+  background-color: var(--cobalt);
+  background-image:
+    linear-gradient(rgb(238 242 255 / 0.12) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(238 242 255 / 0.12) 1px, transparent 1px);
+  background-size: 14px 14px;
+  color: #eef2ff;
+  margin: 6px;
+}
+
+.specs__item {
+  padding: var(--space-3) var(--space-4);
+  border-bottom: 1px dashed rgb(238 242 255 / 0.35);
+}
+
+.specs__item:nth-child(odd) {
+  border-right: 1px dashed rgb(238 242 255 / 0.35);
+}
+
+.specs__item:nth-last-child(-n + 2) {
+  border-bottom: 0;
+}
+
+.specs dt {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  opacity: 0.75;
+}
+
+.specs dd {
+  font-size: var(--text-base);
+  font-weight: 700;
+}
+
+.ficha__descripcion {
+  max-width: 60ch;
+}
+
+.ficha__extras {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.ficha__extras li {
+  padding: var(--space-1) var(--space-3);
+  border: 2px solid var(--ink);
+  font-size: var(--text-sm);
+  font-weight: 600;
+}
+
+.ficha__acciones {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-3);
+  margin-top: var(--space-2);
+}
+
+.ficha__acciones .btn--yellow {
+  flex: 1 1 220px;
+}
+
+.ficha__aviso {
+  flex-basis: 100%;
+  font-weight: 800;
+}
+
+.ficha__nota {
+  display: flex;
+  gap: var(--space-2);
+  font-size: var(--text-sm);
+  color: var(--ink-soft);
+}
+
+.ficha__nota .icono {
+  flex: none;
+  font-size: 1.25rem;
+  color: var(--cobalt);
+}
+
+.ficha__fecha {
+  color: var(--ink-soft);
+  font-size: var(--text-xs);
+}
